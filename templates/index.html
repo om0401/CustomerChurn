@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customer Churn Predictor</title>
+    <style>
+        body {
+            background: #f0f4f8;
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding-top: 40px;
+        }
+
+        .container {
+            background: #fff;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            width: 500px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #007acc;
+        }
+
+        label {
+            font-weight: 500;
+            display: block;
+            margin: 12px 0 6px;
+        }
+
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 6px;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            margin-top: 8px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            margin-top: 20px;
+            background-color: #007acc;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #005c99;
+        }
+
+        .result {
+            margin-top: 25px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .probability {
+            font-size: 16px;
+            color: #444;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Customer Churn Predictor</h2>
+        <form method="POST">
+            <!-- Dropdowns -->
+            <label>Gender:</label>
+            <select name="gender">
+                <option>Male</option>
+                <option>Female</option>
+            </select>
+
+            <label>Partner:</label>
+            <select name="Partner">
+                <option>Yes</option>
+                <option>No</option>
+            </select>
+
+            <label>Dependents:</label>
+            <select name="Dependents">
+                <option>Yes</option>
+                <option>No</option>
+            </select>
+
+            <label>Phone Service:</label>
+            <select name="PhoneService">
+                <option>Yes</option>
+                <option>No</option>
+            </select>
+
+            <label>Multiple Lines:</label>
+            <select name="MultipleLines">
+                <option>Yes</option>
+                <option>No</option>
+            </select>
+
+            <label>Online Security:</label>
+            <select name="OnlineSecurity">
+                <option>Yes</option>
+                <option>No</option>
+            </select>
+
+            <label>Online Backup:</label>
+            <select name="OnlineBackup">
+                <option>Yes</option>
+                <option>No</option>
+            </select>
+
+            <label>Device Protection:</label>
+            <select name="DeviceProtection">
+                <option>Yes</option>
+                <option>No</option>
+            </select>
+
+            <label>Tech Support:</label>
+            <select name="TechSupport">
+                <option>Yes</option>
+                <option>No</option>
+            </select>
+
+            <label>Streaming TV:</label>
+            <select name="StreamingTV">
+                <option>Yes</option>
+                <option>No</option>
+            </select>
+
+            <label>Streaming Movies:</label>
+            <select name="StreamingMovies">
+                <option>Yes</option>
+                <option>No</option>
+            </select>
+
+            <label>Internet Service:</label>
+            <select name="InternetService">
+                <option>DSL</option>
+                <option>Fiber optic</option>
+                <option>No</option>
+            </select>
+
+            <label>Contract Type:</label>
+            <select name="Contract">
+                <option>Month-to-month</option>
+                <option>One year</option>
+                <option>Two year</option>
+            </select>
+
+            <label>Payment Method:</label>
+            <select name="PaymentMethod">
+                <option>Bank transfer (automatic)</option>
+                <option>Credit card (automatic)</option>
+                <option>Electronic check</option>
+                <option>Mailed check</option>
+            </select>
+
+            <!-- Checkboxes -->
+            <div class="checkbox-label">
+                <input type="checkbox" name="SeniorCitizen" />
+                <label for="SeniorCitizen">Senior Citizen</label>
+            </div>
+
+            <div class="checkbox-label">
+                <input type="checkbox" name="PaperlessBilling" />
+                <label for="PaperlessBilling">Paperless Billing</label>
+            </div>
+
+            <!-- Numeric inputs -->
+            <label>Tenure (months):</label>
+            <input type="text" name="tenure" required />
+
+            <label>Monthly Charges:</label>
+            <input type="text" name="MonthlyCharges" required />
+
+            <label>Total Charges:</label>
+            <input type="text" name="TotalCharges" required />
+
+            <!-- Submit -->
+            <input type="submit" value="Predict" />
+        </form>
+
+        {% if result %}
+            <div class="result">
+                {{ result }}<br />
+                <span class="probability">Churn Probability: {{ prob }}%</span>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
